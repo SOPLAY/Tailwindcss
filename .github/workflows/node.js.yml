@@ -18,8 +18,10 @@ jobs:
           persist-credentials: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install and Build
-        uses: actions/setup-node@v1
-      - run: npm install
-      - run: node -v
-      - run: npm run deploy-gh
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: yarn
+      - run: yanr deploy-gh
