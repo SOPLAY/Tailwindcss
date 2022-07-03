@@ -8,6 +8,6 @@ module.exports = {
   reactStrictMode: true,
   images: {
     loader: 'akamai',
-    path: '/',
+    path: !debug ? `/${gitRepoName}` : '',
   },
 };
