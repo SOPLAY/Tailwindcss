@@ -10,12 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Tailwindcss 연습</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex min-h-screen pl-16 bg-discordGray-600'>
-        {/* Sidebar w-16 */}
-        <Sidebar />
-        <div>
-          <Component {...pageProps} />
-        </div>
+      <Sidebar />
+      <div className='flex min-h-screen ml-16 bg-discordGray-600'>
+        <Component {...pageProps} />
       </div>
     </>
   );
