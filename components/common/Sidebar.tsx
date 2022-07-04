@@ -55,13 +55,22 @@ const Sidebar = () => {
   return (
     <div className='fixed top-0 left-0 flex flex-col w-16 h-screen m-0 shadow-lg text-secondary bg-primary '>
       {navList.map((value, index) => (
-        <Link href={value.path} key={index}>
+        <Link
+          href={
+            process.env.NODE_ENV === 'production'
+              ? '/Tailwindcss'
+              : '' + value.path
+          }
+          key={index}
+        >
           <a>
             <SideBarIcon
               icon={value.icon}
               styles={value.styles}
               name={value.name}
-              isActive={router.asPath === value.path}
+              isActive={
+                router.asPath.replace('/Tailwindcss', '') === value.path
+              }
             />
           </a>
         </Link>
