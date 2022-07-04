@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -62,6 +63,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>interactive chat</title>
+      </Head>
       <Section>
         <div className='flex items-center justify-center h-full' ref={titleRef}>
           <h1 className='z-10 text-7xl'>페이지 타이틀</h1>
@@ -83,7 +87,7 @@ const Home: NextPage = () => {
       {data.map((v, i) => (
         <Section key={i}>
           <div className='box-border relative mx-20' ref={v.ref}>
-            <h2 className='z-10 pb-3 text-xl font-bold text-discordGray-600'>
+            <h2 className='z-10 pb-3 mt-32 text-xl font-bold text-discordGray-600'>
               {v.title}
             </h2>
             <p className='z-10 w-2/5'>{v.text}</p>
