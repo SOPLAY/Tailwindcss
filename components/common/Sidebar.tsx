@@ -57,9 +57,8 @@ const Sidebar = () => {
       {navList.map((value, index) => (
         <Link
           href={
-            process.env.NODE_ENV === 'production'
-              ? '/Tailwindcss'
-              : '' + value.path
+            (process.env.NODE_ENV === 'production' ? '/Tailwindcss' : '') +
+            value.path
           }
           key={index}
         >
