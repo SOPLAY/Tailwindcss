@@ -32,6 +32,12 @@ const Sidebar = () => {
       path: '/',
     },
     {
+      name: 'chatting',
+      icon: <HiChat />,
+      styles: '',
+      path: '/chatting',
+    },
+    {
       name: 'Plus',
       icon: <HiPlus />,
       styles: '',
@@ -42,12 +48,6 @@ const Sidebar = () => {
       icon: <HiLightningBolt />,
       styles: '',
       path: '/meetings',
-    },
-    {
-      name: 'chatting',
-      icon: <HiChat />,
-      styles: '',
-      path: '/chatting',
     },
   ];
   const router = useRouter();

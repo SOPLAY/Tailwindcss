@@ -4,7 +4,7 @@ import React from 'react';
 
 const Home: NextPage = () => {
   return (
-    <div className='flex items-center justify-center w-screen h-screen bg-discordGray-600'>
+    <div className='flex items-center justify-center w-full h-screen bg-discordGray-600'>
       <Head>
         <title>404</title>
       </Head>
