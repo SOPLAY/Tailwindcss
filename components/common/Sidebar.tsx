@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
 import { FaFill, FaFire, FaPoo } from 'react-icons/fa';
 import { HiChat, HiHome, HiLightningBolt, HiPlus } from 'react-icons/hi';
+import { GiSonicShoes } from 'react-icons/gi';
 // sidebar
 interface TypeSBI {
   icon: any;
@@ -38,10 +39,10 @@ const Sidebar = () => {
       path: '/chatting',
     },
     {
-      name: 'Plus',
-      icon: <HiPlus />,
+      name: 'shose',
+      icon: <GiSonicShoes />,
       styles: '',
-      path: '/plus',
+      path: '/shose',
     },
     {
       name: 'meetings',

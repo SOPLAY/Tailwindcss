@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Sidebar />
-      <div className='flex flex-col min-h-screen ml-16 bg-discordGray-600'>
+      <div className='relative flex flex-col min-h-screen ml-16 bg-discordGray-600'>
         <Component {...pageProps} />
       </div>
     </>

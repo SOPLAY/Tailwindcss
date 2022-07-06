@@ -90,9 +90,9 @@ const Home: NextPage = () => {
             <h2 className='z-10 pb-3 mt-32 text-xl font-bold text-discordGray-600'>
               {v.title}
             </h2>
-            <p className='z-10 w-2/5'>{v.text}</p>
+            <p className='z-[1000] w-2/5'>{v.text}</p>
             <div
-              className={`fixed duration-700 left-1/3 top-1/4 scale-150 ${
+              className={`fixed duration-700 left-1/3 top-1/4 scale-150 z-0 ${
                 i + 1 === targetVisible ? 'opacity-1' : 'opacity-0'
               }`}
             >
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
                 width={1920}
                 height={1080}
                 alt={`${v.title} 이미지`}
-                className='image'
+                className='z-0 image'
               />
             </div>
           </div>
