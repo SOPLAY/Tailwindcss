@@ -23,7 +23,7 @@ const Home: NextPage = () => {
     window?.addEventListener('scroll', function () {
       const scrollY = this.scrollY;
       const currentPage = Math.floor(
-        (scrollY + window.outerHeight / 2) / window.outerHeight
+        (scrollY + window.outerHeight / 1.3) / window.outerHeight
       );
       currentPage !== isActivePage && setIsActivePage(currentPage);
     });
@@ -42,17 +42,6 @@ const Home: NextPage = () => {
   };
   return (
     <>
-      <ul className='fixed flex flex-col justify-center h-screen text-xl list-disc right-3 text-slate-500'>
-        {Array.from({ length: 8 }, (v, i) => i).map((v, i) => (
-          <li
-            className={`${
-              i === isActivePage && 'text-black'
-            } duration-300 cursor-pointer`}
-            onClick={() => onMovePage(i)}
-            key={i}
-          />
-        ))}
-      </ul>
       <div ref={targetPageRef}>
         <Section>
           <div>페이지 타이틀</div>
@@ -68,6 +57,19 @@ const Home: NextPage = () => {
           </Section>
         ))}
       </div>
+      <ul className='fixed z-10 flex flex-col justify-center h-screen text-xl list-disc right-1 text-slate-500'>
+        {Array.from({ length: 8 }, (v, i) => i).map((v, i) => (
+          <li
+            className={`${
+              i === isActivePage && 'text-black'
+            } duration-300 cursor-pointer `}
+            onClick={() => onMovePage(i)}
+            key={i}
+          >
+            <span className='invisible'>-</span>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
