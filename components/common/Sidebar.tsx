@@ -15,7 +15,7 @@ const SideBarIcon = ({ icon, styles, name, isActive }: TypeSBI) => {
   return (
     <div
       className={`sidebar-icon group text-2xl ${styles} ${
-        isActive && 'bg-green-600 text-white'
+        isActive && 'bg-green-600 text-white rounded-xl'
       }`}
     >
       {icon}
