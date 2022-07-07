@@ -4,7 +4,9 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 const Section = ({ children }: { children?: JSX.Element }) => (
-  <section className='w-full h-screen bg-[#e8e19b]'>{children}</section>
+  <section className='w-full h-screen bg-[#e8e19b] relative'>
+    {children}
+  </section>
 );
 
 const Home: NextPage = () => {
@@ -64,7 +66,7 @@ const Home: NextPage = () => {
       {/* content */}
       <div ref={targetPageRef}>
         <Section>
-          <div className='flex items-center justify-center h-screen'>
+          <div className='relative flex items-center justify-center h-screen z-[100]'>
             <h1 className='w-5/6 text-4xl font-bold text-center'>
               How&nbsp;to&nbsp;Drawing shoes
             </h1>
@@ -73,6 +75,10 @@ const Home: NextPage = () => {
         {data.map((v, i) => (
           <Section key={i}>
             <>
+              <div className='relative z-50 pt-32 pl-10'>
+                <h1 className='z-10 mb-5 text-3xl text-slate-700'>{v.title}</h1>
+                <p>{v.text}</p>
+              </div>
               <div
                 className={`fixed bottom-12 right-12 max-w-[750px] md:w-3/5 w-1/2 md:h-1/2 overflow-hidden duration-700 ${
                   isActivePage !== 0 &&
@@ -85,12 +91,8 @@ const Home: NextPage = () => {
                   src={`/assets/image/ch2/pic_${i + 1}.jpg`}
                   width='1000'
                   height='1000'
-                  className='scale-110 translate-y-1/4 md:-translate-y-1/4 '
+                  className='scale-110 translate-y-1/4 md:-translate-y-1/4'
                 />
-              </div>
-              <div className='pt-32 pl-10 '>
-                <h1 className='z-10 mb-5 text-3xl text-slate-700'>{v.title}</h1>
-                <p>{v.text}</p>
               </div>
             </>
           </Section>
