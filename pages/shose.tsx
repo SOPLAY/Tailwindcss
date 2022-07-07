@@ -4,9 +4,7 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 const Section = ({ children }: { children?: JSX.Element }) => (
-  <section className='w-full h-screen bg-[#e8e19b] relative'>
-    {children}
-  </section>
+  <section className='w-full h-screen bg-[#e8e19b]'>{children}</section>
 );
 
 const Home: NextPage = () => {
