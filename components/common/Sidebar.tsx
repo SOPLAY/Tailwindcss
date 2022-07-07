@@ -4,6 +4,7 @@ import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
 import { FaFill, FaFire, FaPoo } from 'react-icons/fa';
 import { HiChat, HiHome, HiLightningBolt, HiPlus } from 'react-icons/hi';
 import { GiSonicShoes } from 'react-icons/gi';
+import { SiNike } from 'react-icons/si';
 // sidebar
 interface TypeSBI {
   icon: any;
@@ -43,6 +44,12 @@ const Sidebar = () => {
       icon: <GiSonicShoes />,
       styles: '',
       path: '/shose',
+    },
+    {
+      name: 'nike',
+      icon: <SiNike />,
+      styles: '',
+      path: '/nike',
     },
     {
       name: 'meetings',
