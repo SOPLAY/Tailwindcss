@@ -2,7 +2,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
 import { FaFill, FaFire, FaPoo } from 'react-icons/fa';
-import { HiChat, HiHome, HiLightningBolt, HiPlus } from 'react-icons/hi';
+import {
+  HiChat,
+  HiHome,
+  HiLightningBolt,
+  HiMusicNote,
+  HiPlus,
+} from 'react-icons/hi';
 import { GiSonicShoes } from 'react-icons/gi';
 import { SiNike } from 'react-icons/si';
 // sidebar
@@ -50,6 +56,12 @@ const Sidebar = () => {
       icon: <SiNike />,
       styles: '',
       path: '/nike',
+    },
+    {
+      name: 'music',
+      icon: <HiMusicNote />,
+      styles: '',
+      path: '/music',
     },
     {
       name: 'meetings',
