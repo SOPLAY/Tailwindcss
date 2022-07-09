@@ -30,7 +30,8 @@ const Home: NextPage = () => {
   ];
   const targetRef = useRef<HTMLDivElement>(null);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(() => {
     if (targetRef.current) {
       const targetImg = targetRef.current
@@ -79,6 +80,7 @@ const Home: NextPage = () => {
                     height={400}
                     width={400}
                     className='img'
+                    priority={true}
                   />
                 </div>
                 <div className='absolute w-full h-full duration-300 group-hover:translate-x-[60%] translate-x-[45%]'>
