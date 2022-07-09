@@ -10,6 +10,6 @@
         @apply absolute w-auto p-2 m-2 text-xs font-bold text-white transition-all duration-100 origin-left scale-0 rounded-md shadow-md min-w-max left-14 bg-discordGray-900;
     }
     .music-btn{
-        @apply bg-black text-white px-4 py-2 rounded-md mx-5 duration-300 ease-in-out hover:text-black hover:bg-white
+        @apply bg-black text-white px-2 py-1 md:px-4 md:py-2 rounded-md mx-5 duration-300 ease-in-out hover:text-black hover:bg-white 
     }
 }
