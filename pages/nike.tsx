@@ -85,6 +85,7 @@ const Home: NextPage = () => {
               <div className='relative '>
                 {Array.from({ length: 2 }, (v, i) => i + 1).map((v, i) => (
                   <div
+                    key={i}
                     className={`fixed duration-700 opacity-1 md:w-1/3 w-1/2 images  
                     ${
                       i === 1
