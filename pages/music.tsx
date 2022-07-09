@@ -7,7 +7,7 @@ import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
 import ColorThief from 'colorthief';
 
 const Section = ({ children }: { children: JSX.Element }) => (
-  <section className='w-full h-screen overflow-hidden text-black bg-white'>
+  <section className='w-full h-screen overflow-hidden text-black '>
     {children}
   </section>
 );
@@ -29,28 +29,33 @@ const Home: NextPage = () => {
     { image: '/assets/image/ch2/music/iu_4.jpg' },
   ];
   const targetRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const [bgColor, setBgColor] = useState(['', '']);
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     if (targetRef.current) {
-      const targetImg = targetRef.current.getElementsByTagName('img')[1];
-      if (targetImg.complete && !bgColor[0]) {
+      const targetImg = targetRef.current
+        .getElementsByClassName('active')[0]
+        .getElementsByTagName('img')[1];
+      if (targetImg) {
         const colorThief = new ColorThief();
         const temp = colorThief.getPalette(targetImg, 2);
-        temp &&
-          setBgColor(
-            temp.map((v) => `#${v.map((v2) => v2.toString(16)).join('')}`)
-          );
-
-        // console.log(temp);
+        if (temp) {
+          targetRef.current.getElementsByTagName('section')[
+            currentPage
+          ].style.background = `linear-gradient(120deg,${temp
+            .map((v) => `#${v.map((v2) => v2.toString(16)).join('')}`)
+            .join(',')})`;
+        }
       }
     }
   });
 
-  console.log(bgColor);
-
-  const bgGradient = `from-[${bgColor[0]}] to-[${bgColor[1]}]`;
+  const onClickBtn = (type: 'prev' | 'next' = 'prev') => {
+    const target = type === 'prev' ? currentPage - 1 : currentPage + 1;
+    setCurrentPage(
+      target % data.length < 0 ? data.length - 1 : target % data.length
+    );
+  };
   return (
     <>
       <Head>
@@ -58,17 +63,19 @@ const Home: NextPage = () => {
       </Head>
 
       <div ref={targetRef}>
-        <Section>
-          <>
+        {data.map((v, i, arr) => (
+          <section
+            className={`w-full h-screen overflow-hidden text-black ${
+              i === currentPage ? 'active' : 'hidden'
+            }`}
+          >
             <div
-              className={`relative flex items-center justify-center h-full  bg-gradient-to-r  ${
-                bgColor[0] && bgGradient
-              } active`}
+              className={`relative flex flex-col items-center justify-center h-full `}
             >
               <div className='relative md:w-[400px] md:h-[400px] w-[250px] h-[250px] box-border group'>
                 <div className='absolute z-10 '>
                   <Image
-                    src='/assets/image/ch2/music/iu_0.jpg'
+                    src={v.image}
                     height={400}
                     width={400}
                     className='img'
@@ -79,8 +86,28 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-          </>
-        </Section>
+          </section>
+        ))}
+        <div className='fixed bottom-[10%] pr-16 w-full text-center '>
+          <button className='music-btn' onClick={() => onClickBtn('prev')}>
+            PREV
+          </button>
+          <ul className='relative inline-block h-full text-center text-black '>
+            {data.map((v, i) => (
+              <li
+                className={`relative  inline-block w-[10px] h-[10px] my-auto mx-2  text-center rounded-full duration-300 ease-out 
+                      cursor-pointer
+                      ${i === currentPage ? 'bg-black/90' : 'bg-black/30'}`}
+                onClick={() => setCurrentPage(i)}
+              >
+                <span className='hidden'>1</span>
+              </li>
+            ))}
+          </ul>
+          <button className='music-btn' onClick={() => onClickBtn('next')}>
+            NEXT
+          </button>
+        </div>
       </div>
     </>
   );
