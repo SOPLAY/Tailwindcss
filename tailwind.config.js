@@ -22,6 +22,9 @@ module.exports = {
           100: '#f2f3f5',
         },
       },
+      animation: {
+        'spin-slow': 'spin 5s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
