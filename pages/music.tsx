@@ -63,11 +63,12 @@ const Home: NextPage = () => {
         <title>music</title>
       </Head>
 
-      <div ref={targetRef}>
-        {data.map((v, i, arr) => (
+      <div ref={targetRef} className='relative'>
+        {data.map((v, i) => (
           <section
-            className={`w-full h-screen overflow-hidden text-black ${
-              i === currentPage ? 'active' : 'hidden'
+            key={i}
+            className={`fixed w-full h-screen overflow-hidden text-black duration-300 pr-16 ${
+              i === currentPage ? 'active' : 'opacity-0'
             }`}
           >
             <div
@@ -83,7 +84,11 @@ const Home: NextPage = () => {
                     priority={true}
                   />
                 </div>
-                <div className='absolute w-full h-full duration-300 group-hover:translate-x-[60%] translate-x-[45%]'>
+                <div
+                  className={`absolute w-full h-full duration-700 group-hover:translate-x-[60%] delay-100 ${
+                    i === currentPage ? 'translate-x-[45%]' : ''
+                  }`}
+                >
                   <Disk />
                 </div>
               </div>
