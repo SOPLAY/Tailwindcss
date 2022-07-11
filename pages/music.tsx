@@ -1,16 +1,8 @@
 import { NextPage } from 'next';
-import { HtmlContext } from 'next/dist/shared/lib/html-context';
 import Head from 'next/head';
 import Image from 'next/image';
-import Script from 'next/script';
-import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ColorThief from 'colorthief';
-
-const Section = ({ children }: { children: JSX.Element }) => (
-  <section className='w-full h-screen overflow-hidden text-black '>
-    {children}
-  </section>
-);
 
 const Disk = () => (
   <div className='flex items-center justify-center w-full h-full overflow-hidden rounded-full shadow-[0_0_25px_5px_rgba(0,0,0,0.5)] bg-gradient-to-tl from-black via-black/80 to-black animate-spin-slow '>
@@ -28,6 +20,7 @@ const Home: NextPage = () => {
     { image: '/assets/image/ch2/music/iu_3.jpg' },
     { image: '/assets/image/ch2/music/iu_4.jpg' },
   ];
+
   const targetRef = useRef<HTMLDivElement>(null);
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -36,7 +29,7 @@ const Home: NextPage = () => {
     if (targetRef.current) {
       const targetImg = targetRef.current
         .getElementsByClassName('active')[0]
-        .getElementsByTagName('img')[1];
+        .getElementsByTagName('img')[0];
       if (targetImg) {
         const colorThief = new ColorThief();
         const temp = colorThief.getPalette(targetImg, 2);
@@ -57,6 +50,7 @@ const Home: NextPage = () => {
       target % data.length < 0 ? data.length - 1 : target % data.length
     );
   };
+
   return (
     <>
       <Head>
@@ -74,16 +68,14 @@ const Home: NextPage = () => {
             <div
               className={`relative flex flex-col items-center justify-center h-full `}
             >
-              <div className='relative md:w-[400px] md:h-[400px] w-[250px] h-[250px] box-border group'>
-                <div className='absolute z-10 '>
-                  <Image
-                    src={v.image}
-                    height={400}
-                    width={400}
-                    className='img'
-                    priority={true}
-                  />
-                </div>
+              <div className='relative md:w-[400px] md:h-[400px] w-[250px] h-[250px] box-border group '>
+                <Image
+                  src={v.image}
+                  layout={'fill'}
+                  className='z-10 img'
+                  priority={i === 0 ? true : false}
+                />
+
                 <div
                   className={`absolute w-full h-full duration-700 group-hover:translate-x-[60%] delay-100 ${
                     i === currentPage ? 'translate-x-[45%]' : ''
