@@ -102,6 +102,7 @@ const Home: NextPage = () => {
           <ul className='relative inline-block h-full text-center text-black '>
             {data.map((v, i) => (
               <li
+                key={i}
                 className={`relative  inline-block w-[10px] h-[10px] my-auto md:mx-2 mx-1  text-center rounded-full duration-300 ease-out 
                       cursor-pointer
                       ${i === currentPage ? 'bg-black/90' : 'bg-black/30'}`}
