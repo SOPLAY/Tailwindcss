@@ -8,6 +8,7 @@ import {
   HiLightningBolt,
   HiMusicNote,
   HiPlus,
+  HiStar,
 } from 'react-icons/hi';
 import { GiSonicShoes } from 'react-icons/gi';
 import { SiNike } from 'react-icons/si';
@@ -62,6 +63,12 @@ const Sidebar = () => {
       icon: <HiMusicNote />,
       styles: '',
       path: '/music',
+    },
+    {
+      name: 'star',
+      icon: <HiStar />,
+      styles: '',
+      path: '/star',
     },
     {
       name: 'meetings',
