@@ -68,13 +68,15 @@ const Home: NextPage = () => {
             <div
               className={`relative flex flex-col items-center justify-center h-full `}
             >
-              <div className='relative md:w-[400px] md:h-[400px] w-[250px] h-[250px] box-border group '>
-                <Image
-                  src={v.image}
-                  layout={'fill'}
-                  className='z-10 img'
-                  priority={i === 0 ? true : false}
-                />
+              <div className='relative md:w-[400px] md:h-[400px] w-[250px] h-[250px] box-border group z-[100]'>
+                <div className='absolute z-1 md:w-[400px] md:h-[400px] w-[250px] h-[250px]'>
+                  <Image
+                    src={v.image}
+                    layout={'fill'}
+                    className='z-10 img'
+                    priority={true}
+                  />
+                </div>
 
                 <div
                   className={`absolute w-full h-full duration-700 group-hover:translate-x-[60%] delay-100 ${
