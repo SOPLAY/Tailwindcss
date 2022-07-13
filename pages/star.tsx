@@ -1,6 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Card = ({ children }: { children: string }) => (
   <li className='box-border inline-block w-32 p-3 m-5 rounded-md h-52 bg-gradient-to-bl to-blue-300 from-blue-500'>
@@ -9,23 +9,41 @@ const Card = ({ children }: { children: string }) => (
 );
 
 const Home: NextPage<IGetStaticProps> = ({ datas }) => {
+  //Image 태그는 ref 타게팅이 안됨 ?!
+  const starRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    window &&
+      window.addEventListener('scroll', function () {
+        if (starRef.current) {
+          starRef.current.getElementsByTagName('img')[1];
+        }
+      });
+  });
+
   return (
-    <div
-      className={`relative w-full h-full text-white bg-black bg-[url('/assets/image/ch3/bg.jpg')]`}
-    >
+    <div className={`relative w-full h-full text-white bg-black `}>
+      <div ref={starRef}>
+        <Image src='/assets/image/ch3/bg.jpg' layout='fill' />
+        <Image src='/assets/image/ch3/star.png' layout='fill' />
+      </div>
       <section className='relative min-h-[160vh] overflow-x-hidden '>
         <h2 className=' pt-[35vh] text-center text-5xl font-thin'>
           Star Shotting Pages
         </h2>
       </section>
-      <section className='relative '>
+      <section className='relative min-h-[60vh] flex flex-col  justify-between'>
         <div>
           <ul className='z-10 justify-center text-center text-white'>
             {datas.map((v, i) => (
               <Card key={i}>{v.title}</Card>
             ))}
           </ul>
+          <p className='mt-2 text-xl font-bold text-center'>
+            Star Shotting, Interactive
+          </p>
         </div>
+
+        <Image src='/assets/image/ch3/bottom.png' height={500} width={2000} />
       </section>
     </div>
   );
