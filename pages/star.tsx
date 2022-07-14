@@ -15,17 +15,22 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
     window &&
       window.addEventListener('scroll', function () {
         if (starRef.current) {
-          starRef.current.getElementsByTagName('img')[1];
+          starRef.current.getElementsByTagName('img')[1].style.transform =
+            'translateY(' + -this.scrollY / 3 + 'px)';
+          starRef.current.getElementsByTagName('h2')[0].style.transform =
+            'translateY(' + scrollY / 1.7 + 'px)';
         }
       });
   });
 
   return (
-    <div className={`relative w-full h-full text-white bg-black `}>
-      <div ref={starRef}>
-        <Image src='/assets/image/ch3/bg.jpg' layout='fill' />
-        <Image src='/assets/image/ch3/star.png' layout='fill' />
-      </div>
+    <div
+      className={`relative w-full h-full text-white bg-black `}
+      ref={starRef}
+    >
+      <Image src='/assets/image/ch3/bg.jpg' layout='fill' />
+      <Image src='/assets/image/ch3/star.png' layout='fill' />
+
       <section className='relative min-h-[160vh] overflow-x-hidden '>
         <h2 className=' pt-[35vh] text-center text-5xl font-thin'>
           Star Shotting Pages
