@@ -1,6 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Card = ({ children }: { children: string }) => (
   <li className='box-border inline-block w-32 p-3 m-5 rounded-md h-52 bg-gradient-to-bl to-blue-300 from-blue-500'>
@@ -10,7 +10,9 @@ const Card = ({ children }: { children: string }) => (
 
 const Home: NextPage<IGetStaticProps> = ({ datas }) => {
   //Image 태그는 ref 타게팅이 안됨 ?!
+
   const starRef = useRef<HTMLDivElement>(null);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
   useEffect(() => {
     window &&
       window.addEventListener('scroll', function () {
@@ -21,7 +23,15 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
             'translateY(' + scrollY / 1.7 + 'px)';
         }
       });
-  });
+    if (isFirstLoading) {
+      setTimeout(() => {
+        starRef.current
+          ?.getElementsByTagName('section')[1]
+          .scrollIntoView({ behavior: 'smooth' });
+        setIsFirstLoading(false);
+      }, 2000);
+    }
+  }, [isFirstLoading]);
 
   return (
     <div
