@@ -25,6 +25,9 @@ module.exports = {
       animation: {
         'spin-slow': 'spin 5s ease-in-out infinite',
       },
+      fontFamily: {
+        DoHyeon: ['Do Hyeon', 'sans-serif'],
+      },
     },
   },
   plugins: [],
