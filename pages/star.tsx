@@ -20,7 +20,7 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
           starRef.current.getElementsByTagName('img')[1].style.transform =
             'translateY(' + -this.scrollY / 3 + 'px)';
           starRef.current.getElementsByTagName('h2')[0].style.transform =
-            'translateY(' + scrollY / 1.7 + 'px)';
+            'translateY(' + this.scrollY / 1.7 + 'px)';
         }
       });
     if (isFirstLoading) {
