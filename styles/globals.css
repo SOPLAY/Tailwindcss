@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 @layer components{
     .sidebar-icon{
         @apply relative flex items-center justify-center w-12 h-12 mx-auto my-2 text-green-500 transition-all duration-300 ease-linear cursor-pointer rounded-3xl bg-discordGray-800 hover:bg-green-600 hover:text-white hover:rounded-xl;
