@@ -31,14 +31,14 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
 
       setIsFirstLoading(false);
 
-      // setTimeout(() => {
-      //   if (!starRef.current) return;
-      //   //첫 방문 로딩 스크롤 구현
-      //   starRef.current
-      //     .getElementsByTagName('section')[1]
-      //     .scrollIntoView({ behavior: 'smooth' });
-      //   setIsFirstLoading(false);
-      // }, 2000);
+      setTimeout(() => {
+        if (!starRef.current) return;
+        //첫 방문 로딩 스크롤 구현
+        starRef.current
+          .getElementsByTagName('section')[1]
+          .scrollIntoView({ behavior: 'smooth' });
+        setIsFirstLoading(false);
+      }, 2000);
     }
   }, [isFirstLoading]);
   useEffect(() => {
