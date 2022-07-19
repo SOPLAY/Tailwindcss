@@ -1,4 +1,5 @@
-import gsap, { Power3 } from 'gsap';
+import gsap, { Power3, Power4, TweenMax } from 'gsap';
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
@@ -12,7 +13,8 @@ const Card = ({ children }: { children: string }) => (
 );
 
 const Home: NextPage<IGetStaticProps> = ({ datas }) => {
-  //Image 태그는 ref 타게팅이 안됨 ?!
+  //gsap registerPlugin ScrollToPlugin
+  gsap.registerPlugin(ScrollToPlugin);
 
   const starRef = useRef<HTMLDivElement>(null);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
@@ -26,21 +28,23 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
             'translateY(' + this.scrollY / 1.7 + 'px)';
         }
       });
+
     if (isFirstLoading) {
       if (!starRef.current) return;
 
       setIsFirstLoading(false);
 
-      setTimeout(() => {
-        if (!starRef.current) return;
-        //첫 방문 로딩 스크롤 구현
-        starRef.current
-          .getElementsByTagName('section')[1]
-          .scrollIntoView({ behavior: 'smooth' });
-        setIsFirstLoading(false);
-      }, 2000);
+      // setTimeout(() => {
+      //   if (!starRef.current) return;
+      //   //첫 방문 로딩 스크롤 구현
+      //   starRef.current
+      //     .getElementsByTagName('section')[1]
+      //     .scrollIntoView({ behavior: 'smooth' });
+      //   setIsFirstLoading(false);
+      // }, 2000);
     }
   }, [isFirstLoading]);
+  // gsap.registerPlugin(ScrollToPlugin);
   useEffect(() => {
     if (starRef.current && isFirstLoading) {
       setIsFirstLoading(false);
@@ -52,6 +56,14 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
           scale: 0,
           delay: Math.random() * 1,
         });
+        typeof window !== 'undefined' &&
+          gsap.to(window, 3, {
+            scrollTo: {
+              y: starRef.current.getElementsByTagName('section')[1],
+            },
+            delay: 1.7,
+            ease: Power4.easeInOut,
+          });
       }
     }
   }, []);
@@ -73,7 +85,10 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
             )}
         </h2>
       </section>
-      <section className='relative min-h-[60vh] flex flex-col  justify-between'>
+      <section
+        className='relative min-h-[60vh] flex flex-col  justify-between'
+        id='targetSec'
+      >
         <div>
           <ul className='z-10 justify-center text-center text-white'>
             {datas.map((v, i) => (
