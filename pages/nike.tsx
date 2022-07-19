@@ -69,7 +69,7 @@ const Home: NextPage = () => {
       </ul>
 
       {/* content */}
-      <div ref={sectionRef}>
+      <div ref={sectionRef} className='overflow-x-hidden'>
         <Section>
           <div className='flex items-center justify-center h-screen'>
             <h1 className='z-10 font-bold text-7xl'>Nike page</h1>
@@ -99,7 +99,9 @@ const Home: NextPage = () => {
                           } `
                     }
                     ${
-                      isActivePage === dataIndex + 1 ? 'opacity-1' : 'opacity-0'
+                      isActivePage === dataIndex + 1
+                        ? 'opacity-1 visible'
+                        : 'opacity-0 invisible'
                     }
                     `}
                   >
