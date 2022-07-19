@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       const targetImg = targetRef.current
         .getElementsByClassName('active')[0]
         .getElementsByTagName('img')[0];
-      if (targetImg) {
+      if (targetImg.complete) {
         const colorThief = new ColorThief();
         const temp = colorThief.getPalette(targetImg, 2);
         if (temp) {
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
         }
       }
     }
-  });
+  }, [targetRef]);
 
   const onClickBtn = (type: 'prev' | 'next' = 'prev') => {
     const target = type === 'prev' ? currentPage - 1 : currentPage + 1;
