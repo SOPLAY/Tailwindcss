@@ -33,6 +33,7 @@ const Home: NextPage = () => {
       if (targetImg.complete) {
         const colorThief = new ColorThief();
         const temp = colorThief.getPalette(targetImg, 2);
+
         if (temp) {
           targetRef.current.getElementsByTagName('section')[
             currentPage
@@ -42,7 +43,7 @@ const Home: NextPage = () => {
         }
       }
     }
-  }, [targetRef]);
+  }, [currentPage]);
 
   const onClickBtn = (type: 'prev' | 'next' = 'prev') => {
     const target = type === 'prev' ? currentPage - 1 : currentPage + 1;
