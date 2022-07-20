@@ -1,6 +1,6 @@
-import gsap, { Power3, Power4, TweenMax } from 'gsap';
+import gsap, { Power3, Power4 } from 'gsap';
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -33,15 +33,6 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
       if (!starRef.current) return;
 
       setIsFirstLoading(false);
-
-      // setTimeout(() => {
-      //   if (!starRef.current) return;
-      //   //첫 방문 로딩 스크롤 구현
-      //   starRef.current
-      //     .getElementsByTagName('section')[1]
-      //     .scrollIntoView({ behavior: 'smooth' });
-      //   setIsFirstLoading(false);
-      // }, 2000);
     }
   }, [isFirstLoading]);
   // gsap.registerPlugin(ScrollToPlugin);
@@ -56,15 +47,23 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
           scale: 0,
           delay: Math.random() * 1,
         });
-        typeof window !== 'undefined' &&
-          gsap.to(window, 3, {
-            scrollTo: {
-              y: starRef.current.getElementsByTagName('section')[1],
-            },
-            delay: 1.7,
-            ease: Power4.easeInOut,
-          });
       }
+
+      typeof window !== 'undefined' &&
+        gsap.to(window, 3, {
+          scrollTo: {
+            y: starRef.current.getElementsByTagName('section')[1],
+          },
+          delay: 1.7,
+          ease: Power4.easeInOut,
+        });
+
+      gsap.from(starRef.current.getElementsByClassName('targetSec')[0], 2.5, {
+        scale: 0.7,
+        y: 100,
+        delay: 2.2,
+        ease: Power3.easeInOut,
+      });
     }
   }, []);
 
@@ -85,10 +84,7 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
             )}
         </h2>
       </section>
-      <section
-        className='relative min-h-[60vh] flex flex-col  justify-between'
-        id='targetSec'
-      >
+      <section className='targetSec relative min-h-[60vh] flex flex-col justify-between'>
         <div>
           <ul className='z-10 justify-center text-center text-white'>
             {datas.map((v, i) => (
@@ -100,7 +96,12 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
           </p>
         </div>
 
-        <Image src='/assets/image/ch3/bottom.png' height={500} width={2000} />
+        <Image
+          src='/assets/image/ch3/bottom.png'
+          height={500}
+          width={2000}
+          priority={true}
+        />
       </section>
     </div>
   );
