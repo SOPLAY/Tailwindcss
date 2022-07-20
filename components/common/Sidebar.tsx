@@ -4,6 +4,7 @@ import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
 import { FaFill, FaFire, FaPoo } from 'react-icons/fa';
 import {
   HiChat,
+  HiCreditCard,
   HiHome,
   HiLightningBolt,
   HiMusicNote,
@@ -69,6 +70,12 @@ const Sidebar = () => {
       icon: <HiStar />,
       styles: '',
       path: '/star',
+    },
+    {
+      name: 'card',
+      icon: <HiCreditCard />,
+      styles: '',
+      path: '/card',
     },
     {
       name: 'meetings',
