@@ -50,7 +50,7 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
       }
 
       typeof window !== 'undefined' &&
-        gsap.to(window, 3, {
+        gsap.to(window, 2, {
           scrollTo: {
             y: starRef.current.getElementsByTagName('section')[1],
           },
@@ -66,6 +66,13 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
       });
     }
   }, []);
+  const onMoveTop = () => {
+    window &&
+      gsap.to(window, 1, {
+        scrollTo: { y: 0, autoKill: true },
+        ease: Power4.easeInOut,
+      });
+  };
 
   return (
     <div
@@ -95,13 +102,20 @@ const Home: NextPage<IGetStaticProps> = ({ datas }) => {
             Star Shotting, Interactive
           </p>
         </div>
-
         <Image
           src='/assets/image/ch3/bottom.png'
           height={500}
           width={2000}
           priority={true}
         />
+        <div className='absolute bottom-[5%] right-3'>
+          <button
+            className='px-3 py-1 text-black duration-300 rounded-md bg-white/70 hover:bg-white hover:font-bold'
+            onClick={() => onMoveTop()}
+          >
+            Top
+          </button>
+        </div>
       </section>
     </div>
   );
