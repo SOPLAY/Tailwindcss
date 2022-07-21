@@ -41,7 +41,10 @@ const CardPage = ({
       gsap.to(card, 1, {
         top: windowSize.height / 2 - i * 40,
         left: windowSize.width / 2 - 200 + i * 40,
-        rotation: 0,
+        rotationX: 0,
+        rotationY: 0,
+        rotationZ: 0,
+
         ease: Power3.easeInOut,
         delay: i * 0.1,
       })
@@ -51,9 +54,11 @@ const CardPage = ({
   const onRandom = () => {
     sectionRef.current?.querySelectorAll('div').forEach((card, i) =>
       gsap.to(card, 1, {
-        top: Math.random() * windowSize.height,
-        left: Math.random() * (windowSize.width - 100),
-        rotation: Math.random() * 180,
+        top: Math.random() * (windowSize.height - 300) + 100,
+        left: Math.random() * (windowSize.width - 300),
+        rotationX: 'random(-60,60)',
+        rotationY: 'random(-60,60)',
+        rotationZ: 'random(-90,90)',
         ease: Power3.easeInOut,
         delay: i * 0.2,
       })
@@ -62,6 +67,7 @@ const CardPage = ({
 
   //로드후 최초 실행
   useEffect(() => {
+    gsap.set('section', { perspective: 400 });
     if (window) {
       setWindowSize({ height: window.innerHeight, width: window.innerWidth });
       window.addEventListener('resize', () => {
