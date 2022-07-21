@@ -1,5 +1,5 @@
 import gsap, { Power3 } from 'gsap';
-import { NextPage } from 'next';
+import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -26,20 +26,16 @@ const Button: React.FC<ButtonProps> = ({ children, onClick }) => (
   </button>
 );
 
-const Home: NextPage = () => {
-  const cardData = [
-    { title: 'card', bgGradient: 'from-[#FBAB7E] to-[#F7CE68]' },
-    { title: 'card', bgGradient: 'from-[#FF5E7E] to-[#FF99AC]' },
-    { title: 'card', bgGradient: 'from-[#0093E9] to-[#80D0C7]' },
-    { title: 'card', bgGradient: 'from-[#fd1d1d] to-[#833ab4]' },
-    { title: 'card', bgGradient: 'from-[#000000] to-[#FC00FF]' },
-  ];
-
+const CardPage = ({
+  cardData,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const sectionRef = useRef<HTMLElement>(null);
+
   const [windowSize, setWindowSize] = useState({
     height: 0,
     width: 0,
   });
+
   const cardSetting = () => {
     if (sectionRef.current) {
       const cards = sectionRef.current.getElementsByTagName('div');
@@ -54,6 +50,10 @@ const Home: NextPage = () => {
       }
     }
   };
+
+  const onRandom = () => {};
+
+  //로드후 최초 실행
   useEffect(() => {
     if (window) {
       setWindowSize({ height: window.innerHeight, width: window.innerWidth });
@@ -63,11 +63,10 @@ const Home: NextPage = () => {
     }
   }, []);
 
+  //사이즈 변화 감지시 실행
   useEffect(() => {
     cardSetting();
   }, [windowSize]);
-
-  const onRandom = () => {};
 
   return (
     <>
@@ -92,4 +91,20 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export const getStaticProps = async () => {
+  type ICardData = { title: string; bgGradient: string };
+  const cardData: ICardData[] = [
+    { title: 'card', bgGradient: 'from-[#FBAB7E] to-[#F7CE68]' },
+    { title: 'card', bgGradient: 'from-[#FF5E7E] to-[#FF99AC]' },
+    { title: 'card', bgGradient: 'from-[#0093E9] to-[#80D0C7]' },
+    { title: 'card', bgGradient: 'from-[#fd1d1d] to-[#833ab4]' },
+    { title: 'card', bgGradient: 'from-[#000000] to-[#FC00FF]' },
+  ];
+  return {
+    props: {
+      cardData,
+    },
+  };
+};
+
+export default CardPage;
