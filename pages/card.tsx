@@ -54,7 +54,6 @@ const CardPage = ({
         top: Math.random() * windowSize.height,
         left: Math.random() * (windowSize.width - 100),
         rotation: Math.random() * 180,
-
         ease: Power3.easeInOut,
         delay: i * 0.2,
       })
@@ -69,6 +68,11 @@ const CardPage = ({
         setWindowSize({ height: window.innerHeight, width: window.innerWidth });
       });
     }
+    gsap.fromTo(
+      'h1',
+      { top: -50, autoAlpha: 0, ease: Power3.easeInOut },
+      { top: 0, autoAlpha: 1, ease: Power3.easeInOut }
+    );
   }, []);
 
   //사이즈 변화 감지시 실행
@@ -81,7 +85,7 @@ const CardPage = ({
       <Head>
         <title>Card-Motion</title>
       </Head>
-      <div className='relative h-screen bg-purple-100'>
+      <div className='relative h-screen overflow-hidden bg-purple-100'>
         <h1 className='my-5 text-3xl text-center font-DoHyeon'>Card-Motion</h1>
         <section className='flex flex-wrap justify-around' ref={sectionRef}>
           {cardData.map((v, i) => (
