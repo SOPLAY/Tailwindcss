@@ -12,7 +12,7 @@ const Card: React.FC<CardProps> = ({ children, bgGradient }) => (
   <div
     className={`absolute w-[200px] h-28 rounded-2xl p-3 bg-white shadow-[5px_5px_12px_rgba(0,0,0,0.3)] bg-gradient-to-tl ${bgGradient}`}
   >
-    <p className={`text-right pr-3 text-white font-bold`}>{children}</p>
+    <p className={`text-right pr-3 text-white/50  font-bold`}>{children}</p>
   </div>
 );
 
@@ -37,21 +37,29 @@ const CardPage = ({
   });
 
   const cardSetting = () => {
-    if (sectionRef.current) {
-      const cards = sectionRef.current.getElementsByTagName('div');
-      for (let i = 0; i < cards.length; i++) {
-        gsap.to(cards[i], 0.7, {
-          top: windowSize.height / 2 - i * 40,
-          left: windowSize.width / 2 - 200 + i * 40,
-          rotation: 0,
-          ease: Power3.easeInOut,
-          delay: i * 0.1,
-        });
-      }
-    }
+    sectionRef.current?.querySelectorAll('div').forEach((card, i) =>
+      gsap.to(card, 1, {
+        top: windowSize.height / 2 - i * 40,
+        left: windowSize.width / 2 - 200 + i * 40,
+        rotation: 0,
+        ease: Power3.easeInOut,
+        delay: i * 0.1,
+      })
+    );
   };
 
-  const onRandom = () => {};
+  const onRandom = () => {
+    sectionRef.current?.querySelectorAll('div').forEach((card, i) =>
+      gsap.to(card, 1, {
+        top: Math.random() * windowSize.height,
+        left: Math.random() * (windowSize.width - 100),
+        rotation: Math.random() * 180,
+
+        ease: Power3.easeInOut,
+        delay: i * 0.2,
+      })
+    );
+  };
 
   //로드후 최초 실행
   useEffect(() => {
